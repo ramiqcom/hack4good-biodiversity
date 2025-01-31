@@ -1,0 +1,11 @@
+dask~=2025.1
+jupyterlab~=4.3
+geopandas~=1.0
+matplotlib~=3.10
+pyarrow~=19.0
+python-dotenv~=1.0
+rasterstats~=0.20
+rasterio~=1.4
+scikit-image~=0.24
+scikit-learn~=1.6
+scipy~=1.1
