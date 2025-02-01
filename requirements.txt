@@ -1,5 +1,4 @@
 dask~=2025.1
-fastapi[standard]~=0.115
 jupyterlab~=4.3
 geopandas~=1.0
 matplotlib~=3.10
