@@ -1,6 +1,7 @@
 import json
 
 import geopandas as gpd
+import rasterio as rio
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -17,15 +18,22 @@ def biodiversity():
     return {"score": 5, "credits": 150}
 
 
-class Item(BaseModel):
+class Data(BaseModel):
     geometry: dict
+
+
+class Item(BaseModel):
+    data: Data
 
 
 @app.post("/biodiversity")
 def biodiversity_post(item: Item):
-    geom_string = item.geometry
+    geom_string = item.data.geometry
     geom_json = json.dumps(geom_string)
     geom = gpd.read_file(geom_json)
     print(geom)
-    # value = calculation.calculate_raster(geom)
+    raster = rio.open(
+        "https://storage.googleapis.com/gee-ramiqcom-s4g-bucket/hack4good_biodiversity/lc_nl_raster.tif"
+    )
+    print(raster)
     return {"score": 5, "credits": 150, "geometry": geom_json}
