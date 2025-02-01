@@ -34,7 +34,7 @@ def biodiversity_post(item: Item):
         # Load the geometry
         geom_string = item.data.geometry
         geom_json = json.dumps(geom_string)
-        geom = gpd.read_file(geom_json).to_crs("EPSG:28992")
+        geom = gpd.read_file(geom_json)
 
         # Calculate area of the geometry
         area = geom.union_all().area
@@ -43,10 +43,8 @@ def biodiversity_post(item: Item):
         raster = rio.open(
             "https://storage.googleapis.com/gee-ramiqcom-s4g-bucket/hack4good_biodiversity/lc_nl_raster.tif"
         )
-        crs = raster.crs
         transform = raster.transform
-        geom_new_crs = geom.to_crs(crs).union_all()
-        bounds = geom_new_crs.bounds
+        bounds = geom.total_bounds
         window = windows.from_bounds(*bounds, transform=transform)
         image = raster.read(
             window=window,
