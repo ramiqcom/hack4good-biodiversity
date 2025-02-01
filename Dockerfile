@@ -6,6 +6,6 @@ COPY server .
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["fastapi", "run", "main.py"]
+CMD ["fastapi", "run", "main.py", "--host", "0.0.0.0", "--port", "8080"]
