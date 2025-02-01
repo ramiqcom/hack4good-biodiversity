@@ -80,7 +80,7 @@ jobs:
         with:
           registry: gcr.io
           project_id: ${{ env.PROJECT_ID }}
-          image_name: ${{ env.JOB }}-image
+          image_name: ${{ env.SERVICE }}-image
           image_tag: latest
           dockerfile: ./Dockerfile
           context: .
