@@ -1,5 +1,6 @@
 dask~=2025.1
 fastapi[standard]~=0.115
+geojson~=3.2
 geopandas~=1.0
 pyarrow~=19.0
 python-dotenv~=1.0

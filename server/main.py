@@ -1,4 +1,8 @@
+import json
+
+import geopandas as gpd
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -13,6 +17,15 @@ def biodiversity():
     return {"score": 5, "credits": 150}
 
 
+class Item(BaseModel):
+    geometry: dict
+
+
 @app.post("/biodiversity")
-def biodiversity_post():
-    return {"score": 5, "credits": 150}
+def biodiversity_post(item: Item):
+    geom_string = item.geometry
+    geom_json = json.dumps(geom_string)
+    geom = gpd.read_file(geom_json)
+    print(geom)
+    # value = calculation.calculate_raster(geom)
+    return {"score": 5, "credits": 150, "geometry": geom_json}
