@@ -1,1 +1,1 @@
-https://api-titiler-server-395367171754.europe-west4.run.app/tiles/WebMercatorQuad/{z}/{x}/{y}?url=https://storage.googleapis.com/gee-ramiqcom-s4g-bucket/hack4good_biodiversity/lc_nl_raster_epsg3857.tif&bidx=1&resample=0,10&cmap=ylgn
+https://api-titiler-server-395367171754.europe-west4.run.app/cog/tiles/WebMercatorQuad/{z}/{x}/{y}?url=https://storage.googleapis.com/gee-ramiqcom-s4g-bucket/hack4good_biodiversity/biodiversity_score_v1.tif&bidx=1&rescale=0,10&colormap_name=rdylgn&nodata=-9999
