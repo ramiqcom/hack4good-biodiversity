@@ -10,6 +10,10 @@ from rasterio.features import rasterize
 
 app = FastAPI()
 
+lc_classes = json.loads(
+    '{"10": "Railway site", "11": "Main road", "12": "Airport", "20": "Residential area", "21": "Retail and catering", "22": "Public facility", "23": "Socio-cultural facility", "24": "Industrial estate", "30": "Landfill", "31": "Wreck storage site", "32": "Cemetery", "33": "Mineral extraction site", "34": "Construction site", "35": "Semi-paved other terrain", "40": "Park and public garden", "41": "Sports field", "42": "Allotment garden", "43": "Day recreation area", "44": "Recreational accommodation area", "50": "Greenhouse horticulture", "51": "Other agricultural terrain", "60": "Forest", "61": "Open dry natural terrain", "62": "Open wet natural terrain", "70": "IJsselmeer & Markermeer", "71": "Closed sea arm", "72": "Rhine & Meuse", "73": "Randmeer", "74": "Reservoir", "75": "Water with recreational function", "76": "Water with mineral extraction function", "77": "Fluid and/or silt field", "78": "Other inland water", "80": "Wadden Sea, Eems & Dollard", "81": "Oosterschelde", "82": "Westerschelde", "83": "North Sea"}'
+)
+
 
 @app.get("/")
 def read_root():
@@ -87,7 +91,9 @@ def biodiversity_post(item: Item):
         lc_areas = (lc_list[1] / 10) ** 2
         lc_areas_dict = {}
         for x in range(len(lc_class)):
-            lc_areas_dict[int(lc_class[x])] = round(float(lc_areas[x]), 2)
+            lc_areas_dict[lc_classes[str(int(lc_class[x]))]] = round(
+                float(lc_areas[x]), 2
+            )
 
         # Calculate the score
         average_score = float(np.nanmean(image))
